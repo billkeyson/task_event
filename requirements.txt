@@ -3,4 +3,4 @@ flask
 eventlet
 Flask-Cors
 gunicorn
-json_util
+pymongo
