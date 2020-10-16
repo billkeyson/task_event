@@ -24,7 +24,7 @@ class JobsModel:
         jobs['end_date']  = end_date
         jobs['description']  = description
         jobs['website_url']  = website_url
-        jobs['resources']  = description  
+        jobs['resources']  = resources  
         jobs['atDate']  = datetime.datetime.utcnow()
         jobs['atModified']  = datetime.datetime.utcnow()
         jobsid = cls.connection().insert_one(jobs).inserted_id
@@ -33,14 +33,27 @@ class JobsModel:
     @classmethod
     def find(cls):
         alljobs = cls.connection().find({},{"_id":0})
-        return alljobs if alljobs.count()>0 else []
+        all = []
+        if alljobs.count()>0:
+            for job in alljobs:
+                job['atDate'] = str(job['atDate'])
+                job['atModified'] = str(job['atModified'])
+                all.append(job)
+            return  all
+        return []
     
     @classmethod
-    def find_one(cls,cusid):
-        find_one = cls.connection().find_one({'id':cusid})
+    def find_one(cls,jobid):
+        find_one = cls.connection().find_one({'uid':jobid})
         if find_one:
+            find_one.pop("_id")
             find_one['atDate'] = str(find_one['atDate'])
             find_one['atModified'] = str(find_one['atModified'])
             return find_one
         return {}
         
+    
+    @classmethod
+    def delete_one(cls,jobid):
+        find_one = cls.connection().delete_one({'uid':jobid})
+        return True if find_one else False

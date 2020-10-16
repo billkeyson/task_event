@@ -24,26 +24,26 @@ def add():
     
     # save jobs to DB
     jobs = JobsModel.add(request_response.get('job_name'),request_response.get('address'),\
-        request_response.get('mobileno'),request_response.get('start_Date'),\
+        request_response.get('mobileno'),request_response.get('start_date'),\
             end_date,request_response.get('description'),website_url,resources)
     if jobs:
         return make_response('00200',messages.get('00200').get('en'),results={"uid":jobs},status=200)
     return make_response('00422',messages.get('00422').get('en'),results={"uid":jobs},status=401)
 
-@job_api.route('/all')
+@job_api.route('/')
 def find_all():
     all_customer = JobsModel.find()
-    return make_response('00204',messages.get('00422').get('en'),results=all_customer)
+    return make_response('00204',messages.get('00204').get('en'),results=all_customer)
 
 
 @job_api.route('/<job_id>')
 def find_a_job(job_id):
     a_job = JobsModel.find_one(job_id)
-    return make_response('00204',messages.get('00422').get('en'),results=a_job)
+    return make_response('00204',messages.get('00204').get('en'),results=a_job)
 
 
 
 @job_api.route('/<job_id>',methods = ['DELETE'])
 def delete_a_job(job_id):
-    a_job = JobsModel.find_one(job_id)
-    return make_response('','',results=a_job)
+    a_job = JobsModel.delete_one(job_id)
+    return make_response('00201',messages.get('00201').get('en'),results={})

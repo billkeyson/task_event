@@ -1,3 +1,4 @@
+# Create A Customer
 POST http://localhost:5002/customer/add
 Content-Type: application/json
 
@@ -8,15 +9,34 @@ Content-Type: application/json
     "email":""
 }
 ###
-POST http://localhost:5002/jobs/add
+GET  http://localhost:5002/customer/
+###
+GET  http://localhost:5002/customer/cus2020101682BC29D1B4D3407E9F28AAC66595AFF5
+###
+DELETE   http://localhost:5002/customer/cus2020101682BC29D1B4D3407E9F28AAC66595AFF5
+
+
+###Create A Job
+POST http://localhost:5002/job/add
 Content-Type: application/json
 
 {
-    
+    "job_name":"sweeting",
+    "address":"Accra",
+    "mobileno":"+233234",
+    "start_date":"2020-10-11",
+    "description":"",
+    "website_url":"", ### OPtional
+    "resources":"" ### OPtional
 }
 
+### Return All
+GET  http://localhost:5002/job/
 ###
-GET  http://localhost:5002/jobs/
 ###
+GET  http://localhost:5002/job/job202010169F847E8582FC46D583DAC3BFBE333622
+###
+DELETE http://localhost:5002/job/job202010160D69865F4B8C47698371ED46CF572AC8
+
 GET  http://localhost:5002/customer/cus20201016BEB86AC820A7461CBAD733E15C32592D
 

@@ -1,5 +1,6 @@
 flask_socketio
 flask
+Werkzeug
 eventlet
 Flask-Cors
 gunicorn

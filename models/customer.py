@@ -17,7 +17,7 @@ class CustomerModel:
         customer={}
         customer['uid'] ='cus'+datetime.datetime.now().strftime('%Y%m%d') + \
                      uuid.uuid4().urn[9:].replace('-', '').upper()
-        customer['fullname'] =name
+        customer['name'] =name
         customer['address'] = address
         customer['mobileno'] =mobileno
         customer['email'] = email
@@ -32,7 +32,12 @@ class CustomerModel:
     @classmethod
     def find(cls):
         allcustomer = cls.connection().find({},{"_id":0})
-        return list(allcustomer )if allcustomer.count()>0 else []
+        customers = []
+        for customer in allcustomer:
+            customer['atDate'] =str(customer['atDate'])
+            customer['atModified'] =str(customer['atModified'])
+            customers.append(customer)
+        return customers
     
     @classmethod
     def find_one(cls,cusid):

@@ -26,10 +26,10 @@ def add():
     if jobs:
         return make_response('00200',messages.get('00200').get('en'),results={"uid":jobs},status=200)
 
-@customer_api.route('/all')
+@customer_api.route('/')
 def find_all():
     all_customer = CustomerModel.find()
-    return make_response('','',results=all_customer)
+    return make_response('00204',messages.get('00204').get('en'),results=all_customer)
 
 
 @customer_api.route('/<customer_id>')
@@ -41,8 +41,8 @@ def find_a_customer(customer_id):
 
 @customer_api.route('/<customer_id>',methods = ['DELETE'])
 def delte_c(customer_id):
-    a_customer = CustomerModel.find_one(customer_id)
-    return make_response('00201',messages.get('00201').get('en'),results=a_customer)
+    a_customer = CustomerModel.delete_one(customer_id)
+    return make_response('00201',messages.get('00201').get('en'),results={})
 
 
 
