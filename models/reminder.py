@@ -42,7 +42,7 @@ class ReminderModel:
     
     @classmethod
     def find(cls):
-        allreminder = cls.connection().find({},{"uid":0})
+        allreminder = cls.connection().find({},{"_id":0})
         reminders = []
         for reminder in allreminder:
             reminder['atDate'] =str(reminder['atDate'])
