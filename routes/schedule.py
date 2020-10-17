@@ -75,7 +75,7 @@ class SchedulerCron:
     @classmethod
     def run(cls):
         scheduler = BackgroundScheduler(daemon=True)  
-        scheduler.add_job(cls.secondsMinute, 'interval', seconds =3)
+        # scheduler.add_job(cls.secondsMinute, 'interval', seconds =3)
         # scheduler.add_job(cls.seconds3Minute, 'interval', seconds =10)
         scheduler.add_job(cls.TenMinute, 'interval', minutes =10)
         scheduler.add_job(cls.TwentyMinute, 'interval', minutes =20)
