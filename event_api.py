@@ -9,7 +9,8 @@ from routes import (
     profile_route,
     customer_route,
     job_route,
-    reminder_router
+    reminder_router,
+    schedule
 )
 
 @socketio.on_error()        # Handles the default namespace
@@ -46,5 +47,6 @@ def json_format(e):
     return make_response("code","request body error",results ={"error": "Page Not Found"},status=400)
 
 if __name__ == "__main__":
-      socketio.run(app,'0.0.0.0',port=5002)
+    schedule.SchedulerCron.run()
+    socketio.run(app,'0.0.0.0',port=5002)
     

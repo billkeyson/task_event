@@ -11,43 +11,55 @@ Content-Type: application/json
 ### get all cust
 GET  https://task-event.herokuapp.com/customer/
 ###
-GET  https://task-event.herokuapp.com/cus2020101682BC29D1B4D3407E9F28AAC66595AFF5
+GET  https://task-event.herokuapp.com/customer/cus2020101682BC29D1B4D3407E9F28AAC66595AFF5
 ###del a customer
 DELETE   https://task-event.herokuapp.com/cus2020101682BC29D1B4D3407E9F28AAC66595AFF5
 
+### Customer END ####
 
+
+### JOBS ###############
 ###Create A Job
-POST https://task-event.herokuapp.com/job/add
+POST http://localhost:5002/job/add
 Content-Type: application/json
 
 {
     "job_name":"sweeting",
+    "client_id":"",
     "address":"Accra",
     "mobileno":"+233234",
     "start_date":"2020-10-11",
     "description":"",
-    "website_url":"", ### OPtional
-    "resources":"" ### OPtional
+    "website_url":"", 
+    "resources":"" 
 }
 ###
-POST http://localhost:5002/reminder/add
+GET  https://task-event.herokuapp.com/job/<job_id>
+###
+GET  https://task-event.herokuapp.com/job/
+
+###
+DELETE   https://task-event.herokuapp.com/job/<job_id>
+### JOBS END###############
+
+
+
+###Reminder
+POST https://task-event.herokuapp.com/reminder/add
 Content-Type: application/json
 
 {
-    "service_type":"",
+    "service_type":"working",
     "job_id":"",
     "start_date":"",
     "interval":"",
     "end_date":""
 
 }
-### Return All
-GET  https://task-event.herokuapp.com/job/
+### Return All Reminder
+GET  https://task-event.herokuapp.com/reminder/<reminder_id>
 ###
+DELETE https://task-event.herokuapp.com/reminder/<reminder_id>
 ###
-GET  https://task-event.herokuapp.com/job/job202010169F847E8582FC46D583DAC3BFBE333622
-###
-DELETE https://task-event.herokuapp.com/job/job202010160D69865F4B8C47698371ED46CF572AC8
-
-GET  https://task-event.herokuapp.com/customer/cus20201016BEB86AC820A7461CBAD733E15C32592D
-
+GET  https://task-event.herokuapp.com/reminder/
+###Reminder END
