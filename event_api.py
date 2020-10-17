@@ -47,6 +47,6 @@ def json_format(e):
     return make_response("code","request body error",results ={"error": "Page Not Found"},status=400)
 
 if __name__ == "__main__":
-    schedule.SchedulerCron.run()
     socketio.run(app,'0.0.0.0',port=5002)
-    
+
+schedule.SchedulerCron.run()
