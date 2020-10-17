@@ -11,12 +11,12 @@ reminder_api = Blueprint('reminder_api',__name__,url_prefix="/reminder")
 def add():
     # start_date,end_date,service_type,interval
     if not request.is_json:
-        return make_response('0401','Error: json header',status=401)
+        return make_response('00414',messages.get('00414').get('en'),status=401)
     request_response = request.get_json()
     required_fields = ['service_type','job_id','start_date','interval','end_date']
     for field in required_fields:
         if field not in request_response.keys():
-            return make_response('00300',messages.get('00300').get('en'),status=401)
+            return make_response('00400',messages.get('00400').get('en'),status=401)
     reminder = ReminderModel.add(request_response.get('start_date'),\
         request_response.get("end_date"),request_response.get("service_type"),request_response.get("interval"),request_response.get("job_id"))
     

@@ -9,13 +9,13 @@ job_api = Blueprint("job_route",__name__,url_prefix="/job")
 @job_api.route('/add',methods=["POST"])
 def add():
     if not request.is_json:
-        return make_response('00415',messages.get('00415').get('en'),status=401)
+        return make_response('00414',messages.get('00414').get('en'),status=401)
     request_response = request.get_json()
     # job_name,address,jobs_id,mobileno,start_date,end_date,description,website_url,resources
     required_fields = ['job_name','client_id','address','mobileno','start_date','description']
     for field in required_fields:
         if field not in request_response.keys():
-            return make_response('00300',messages.get('00300').get('en'),status=401)
+            return make_response('00400',messages.get('00400').get('en'),status=401)
     
     # optional fields
     website_url=  request_response.get('website_url') if request_response.get('website_url') else ''
