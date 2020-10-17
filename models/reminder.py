@@ -21,7 +21,7 @@ class ReminderModel:
         reminder['service_type'] = service_type
         reminder['start_date'] = start_date
         reminder['end_date'] = end_date
-        reminder['inverval'] = interval
+        reminder['interval'] = interval
         reminder['start_date'] = start_date
         reminder['atDate']  = datetime.datetime.utcnow()
         reminder['atModified']  = datetime.datetime.utcnow() 
