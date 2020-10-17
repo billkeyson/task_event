@@ -21,7 +21,7 @@ def add():
         request_response.get("end_date"),request_response.get("service_type"),request_response.get("interval"),request_response.get("job_id"))
     
     if reminder:
-        socketio.emit("reminder_notification",json.dumps(reminder),namespace='/',include_self=True)
+        socketio.emit("reminder_notification",reminder,namespace='/',include_self=True)
         return make_response('00200',messages.get('00200').get('en'),results={"uid":reminder},status=200)
     return make_response('00422',messages.get('00422').get('en'),results={},status=401)
 
