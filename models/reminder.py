@@ -43,13 +43,20 @@ class ReminderModel:
     @classmethod
     def find(cls):
         allreminder = cls.connection().find({},{"uid":0})
-        return allreminder if allreminder.count()>0 else []
+        reminders = []
+        for reminder in allreminder:
+            reminder['atDate'] =str(reminder['atDate'])
+            reminder['atModified'] =str(reminder['atModified'])
+            reminders.append(reminder)
+        return reminders
     
     @classmethod
     def find_one(cls,reminderid):
         find_one = cls.connection().find_one({'uid':reminderid})
         if find_one:
-            return find_one
+            find_one.pop("_id")
+            find_one['atDate'] = str(find_one['atDate'])
+            find_one['atModified'] = str(find_one['atModified'])
         return {}
     
     @classmethod
