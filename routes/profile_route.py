@@ -14,7 +14,7 @@ def add():
     required_fields = ['username','email','password']
     for field in required_fields:
         if field not in request_response.keys():
-            return make_response(messages.get('00300'),messages.get('00300').get('en'),status=401)
+            return make_response(messages.get('00400'),messages.get('00400').get('en'),status=401)
     added = ProfileModel.add(request_response.get('username'),request_response.get('email'),request_response.get('password'))
     if added:
         return  make_response(messages.get('00200'),messages.get('00200').get('en'),status=200)

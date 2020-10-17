@@ -9,14 +9,14 @@ customer_api = Blueprint("customer_route",__name__,url_prefix="/customer")
 @customer_api.route('/add',methods=["POST"])
 def add():
     if not request.is_json:
-        return make_response('00415',messages.get('00415').get('en'),status=401)
+        return make_response('00414',messages.get('00414').get('en'),status=401)
     
     request_response = request.get_json()
     # user_id,name,tags,item_images,category,price,description
     required_fields = ['name','address','mobileno','email']
     for field in required_fields:
         if field not in request_response.keys():
-            return make_response('00300',messages.get('00300').get('en'),status=401)
+            return make_response('00400',messages.get('00400').get('en'),status=401)
     
     # optional fields
     resources = request_response.get('resources') if request_response.get('resources') else ''
