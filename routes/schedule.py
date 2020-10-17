@@ -25,11 +25,12 @@ class SchedulerCron:
                 i['atModified'] = str(i['atModified'])
                 intervals.append(i)
             socketio.emit("reminder_interval",{"code":"interval minute {}".format(interval),"result":intervals})
+            # print("",intervals)
+            
             
     @classmethod
     def secondsMinute(cls):
-        print("1 seconds")
-        # cls.checkRminder(10)
+        cls.checkRminder(10)
     
     @classmethod
     def seconds3Minute(cls):
@@ -75,7 +76,7 @@ class SchedulerCron:
     @classmethod
     def run(cls):
         scheduler = BackgroundScheduler(daemon=True)  
-        # scheduler.add_job(cls.secondsMinute, 'interval', seconds =3)
+        # scheduler.add_job(cls.secondsMinute, 'interval', seconds =40)
         # scheduler.add_job(cls.seconds3Minute, 'interval', seconds =10)
         scheduler.add_job(cls.TenMinute, 'interval', minutes =10)
         scheduler.add_job(cls.TwentyMinute, 'interval', minutes =20)
