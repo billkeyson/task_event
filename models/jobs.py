@@ -26,6 +26,7 @@ class JobsModel:
         jobs['description']  = description
         jobs['website_url']  = website_url
         jobs['resources']  = resources  
+        jobs['status']  = 0  
         jobs['atDate']  = datetime.datetime.utcnow()
         jobs['atModified']  = datetime.datetime.utcnow()
         jobsid = cls.connection().insert_one(jobs).inserted_id
