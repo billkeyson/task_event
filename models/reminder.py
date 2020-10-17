@@ -31,7 +31,7 @@ class ReminderModel:
                 'uid':reminder['uid'],
                 'job_id':reminder['job_id'],
                 'service_type':reminder['service_type'],
-                'inverval':reminder['inverval'],
+                'interval':reminder['interval'],
                 'start_date':str(reminder['start_date']),
                 'end_date':str(reminder['end_date']),
                 'atDate':str(reminder['atDate']),
