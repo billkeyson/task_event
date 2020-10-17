@@ -13,10 +13,11 @@ class JobsModel:
         return db['jobs']
     
     @classmethod
-    def add(cls,job_name,address,mobileno,start_date,end_date,description,website_url,resources):
+    def add(cls,job_name,address,mobileno,start_date,end_date,description,website_url,resources,client_id):
         jobs={}
         jobs['uid'] ='job'+datetime.datetime.now().strftime('%Y%m%d') + \
                      uuid.uuid4().urn[9:].replace('-', '').upper()
+        jobs['client_id']  = description
         jobs['job_name'] =job_name
         jobs['address'] = address
         jobs['mobileno'] =mobileno

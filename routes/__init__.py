@@ -1,7 +1,8 @@
 import json
 from bson import json_util
-from flask import Response
-
+from flask import Response,Flask
+from flask_cors import CORS
+from flask_socketio import SocketIO
 
 
 
@@ -15,3 +16,11 @@ def make_response(code,message,results={},status=200):
         default=json_util.default),
         status=status,
         mimetype="application/json")
+    
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'secret!'
+CORS(app)
+socketio = SocketIO(app,cors_allowed_origins="*")
+    
+

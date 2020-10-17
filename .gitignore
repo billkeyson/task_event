@@ -1,1 +1,6 @@
 .vscode
+routes/__pycache__
+models/__pycache__
+testting/__pycache__
+configs/__pycache__
+

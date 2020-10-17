@@ -1,25 +1,32 @@
 from flask import Flask,request
-from flask_socketio import SocketIO
-from flask_cors import CORS
 import json 
 from werkzeug.exceptions import HTTPException
 
 from routes import (
     make_response,
+    app,
+    socketio,
     profile_route,
     customer_route,
-    job_route
+    job_route,
+    reminder_router
 )
-app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret!'
-CORS(app)
-socketio = SocketIO(app)
+
+@socketio.on_error()        # Handles the default namespace
+def error_handler(e):
+    print(e)
+
 
 # Route Blueprints
 app.register_blueprint(profile_route.profile_api)
 app.register_blueprint(customer_route.customer_api)
 app.register_blueprint(job_route.job_api)
+app.register_blueprint(reminder_router.reminder_api)
 
+@socketio.on('connect')
+def connect():
+    print("connected ", request)
+    
 @app.route('/')
 def test():
     return make_response('code','server working! 0.0.1')
@@ -27,7 +34,7 @@ def test():
 @app.errorhandler(500)
 @app.errorhandler(HTTPException)
 def server_error(e):
-    return make_response("code","error",results ={'error':'Internal Server Error! Contact Admin'},status=500)
+    return make_response("code","error",results ={'error':'Internal Server Error!'},status=500)
     
 
 @app.errorhandler(404)

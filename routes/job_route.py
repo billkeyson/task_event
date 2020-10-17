@@ -9,10 +9,10 @@ job_api = Blueprint("job_route",__name__,url_prefix="/job")
 @job_api.route('/add',methods=["POST"])
 def add():
     if not request.is_json:
-        return make_response('0401','Error: json header',status=401)
+        return make_response('00415',messages.get('00415').get('en'),status=401)
     request_response = request.get_json()
     # job_name,address,jobs_id,mobileno,start_date,end_date,description,website_url,resources
-    required_fields = ['job_name','address','mobileno','start_date','description']
+    required_fields = ['job_name','client_id','address','mobileno','start_date','description']
     for field in required_fields:
         if field not in request_response.keys():
             return make_response('00300',messages.get('00300').get('en'),status=401)
@@ -25,10 +25,10 @@ def add():
     # save jobs to DB
     jobs = JobsModel.add(request_response.get('job_name'),request_response.get('address'),\
         request_response.get('mobileno'),request_response.get('start_date'),\
-            end_date,request_response.get('description'),website_url,resources)
+            end_date,request_response.get('description'),website_url,resources,request_response.get('client_id'))
     if jobs:
         return make_response('00200',messages.get('00200').get('en'),results={"uid":jobs},status=200)
-    return make_response('00422',messages.get('00422').get('en'),results={"uid":jobs},status=401)
+    return make_response('00422',messages.get('00422').get('en'),results={},status=401)
 
 @job_api.route('/')
 def find_all():
