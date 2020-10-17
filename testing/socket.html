@@ -10,7 +10,7 @@
     
    
 <script type="text/javascript" charset="utf-8">
-    var socket = io("http://localhost:5002/");
+    var socket = io("https://task-event.herokuapp.com/");
     socket.on('connect', function() {
         socket.on('reminder_notification', function(data){
             console.log(data)
