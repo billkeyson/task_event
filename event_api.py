@@ -24,7 +24,7 @@ app.register_blueprint(profile_route.profile_api)
 app.register_blueprint(customer_route.customer_api)
 app.register_blueprint(job_route.job_api)
 app.register_blueprint(reminder_router.reminder_api)
-app.register_blueprint(momo_route.reminder_api)
+app.register_blueprint(momo_route.momo_api)
 
 
 @socketio.on('connect')
