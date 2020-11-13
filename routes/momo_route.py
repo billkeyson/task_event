@@ -3,7 +3,7 @@ from . import make_response
 from models.profile import ProfileModel
 from configs.response_message import messages
 
-momo_api = Blueprint("profile_route",__name__,url_prefix="/momo")
+momo_api = Blueprint("momo_route",__name__,url_prefix="/momo")
 
 
 @momo_api.route('/mtn/callback',methods=["POST"])
